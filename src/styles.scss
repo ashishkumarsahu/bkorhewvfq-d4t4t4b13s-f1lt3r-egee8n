@@ -1,0 +1,267 @@
+$usingAngularMaterial: true;
+@import '~@angular/material/theming';
+
+//Temporary StackBlitz Fix, please use the line:
+//@import '~@crowellp/sherpacss/scss/sherpa.scss';
+//instead in your project, do not use the line below
+@import '~nhcryouqxwpctnycdipuxhlvtbyyarwmm/scss/demo.scss';
+
+/** Data Table - Using Material Data Tables */
+.mat-table.table {
+  @include w-pct(100);
+
+	& .mat-footer-row, & .mat-header-row, & .mat-row, & tr {
+    @include border(0);
+    @include h-auto();
+	}
+
+	& .mat-header-cell, & th {
+    @include bg-neutral(0);
+    @include border-b(1);
+    @include border-neutral(2);
+    @include font-size(3);
+    @include font-weight(regular);
+    @include padding(4);
+    @include text-neutral(5);
+	}
+
+	& .mat-cell, & td {
+    @include border-b(1);
+    @include border-neutral(2);
+    @include font-size(3);
+    @include font-weight(regular);
+    @include padding(4);
+    @include text-neutral(7);
+
+    &[data-coin-symbol] {
+      &:before {
+        content: attr(data-coin-symbol);
+      }
+
+      &[data-symbol-align="left"]:before {
+        @include float(left);
+        @include margin-r(1);
+      }
+
+      &[data-symbol-align="right"]:before {
+        @include float(right);
+        @include margin-l(1);
+      }
+    }
+	}
+
+	& .mat-footer-row .mat-footer-cell, & tfoot td {
+    @include bg-primary(0);
+    @include border(0);
+    @include font-weight(bold);
+    @include text-primary(7);
+
+		&.total {
+      @include bg-primary(1);
+		}
+	}
+
+  &--striped {
+    & .mat-cell, & td {
+      @include border(0);
+    }
+	  
+    & .mat-row:nth-of-type(odd) .mat-cell, & tr:nth-of-type(odd) td {
+      @include bg-white;
+	  }
+
+	  & .mat-row:nth-of-type(even) .mat-cell, & tr:nth-of-type(even) td {
+		  @include bg-neutral(0);
+	  }
+  }
+}
+
+/** Pagination - Using Material Paginator */
+.mat-paginator {
+	@include bg-transparent;
+	@include font-size('3');
+
+	&, .mat-paginator-page-size .mat-select-trigger {
+		@include text-neutral('4');
+	}
+
+	& > .mat-paginator-outer-container > .mat-paginator-container {
+		@include minh-pct(0);
+		@include padding('3');
+
+		& > .mat-paginator-page-size {
+			@include margin('0');
+
+			& > .mat-paginator-page-size-label {
+				@include margin('0');
+				@include padding-r('2');
+			}
+
+			& > .mat-paginator-page-size-select {
+				@include bg-neutral('1');
+				@include border-radius('3');
+				@include line-height('3');
+				@include margin('0');
+				@include padding-x('3');
+				@include padding-y('2');
+				@include w-px('8');
+
+				& > .mat-form-field-wrapper {
+					@include padding('0');
+
+					& .mat-form-field-infix {
+						@include border-t('0');
+						@include padding('0');
+
+						& .mat-select-arrow {
+							@include margin('0');
+						}
+					}
+
+					& .mat-form-field-underline {
+						@include display(none);
+					}
+				}
+			}
+		}
+
+		& > .mat-paginator-range-actions {
+			& > .mat-paginator-range-label {
+				@include margin-x('5');
+				@include margin-y('0');
+			}
+
+			& > button {
+				@include text-primary('5');
+				@include h-auto();
+				@include line-height('4');
+				@include w-auto();
+
+				&[disabled] {
+					@include text-neutral('4');
+				}
+			}
+		}
+	}
+}
+
+// forms
+.form-field {
+  & > label {
+    @include display(inline-block);
+    @include font-size(2);
+    @include margin-b(1);
+    @include text-neutral(7);
+    @include text-transform(uppercase);
+  }
+
+  & > .field {
+    @include bg-white;
+    @include border-l(4);
+    @include border-radius(3);
+    @include margin(0);
+    @include padding-l(2);
+    @include padding-r(3);
+    @include padding-y(2);
+    @include text-neutral(7);
+    @include w-pct(100);
+    border-left-style: solid;
+    border-left-color: #FFFFFF;
+
+    &:not(.disabled):focus, &:not(:disabled):focus {
+      @include border-l-primary(4);
+    }
+
+    &--alt {
+      @include bg-neutral(1);
+      @include border-l-neutral(1);
+
+      & + .field--append, & + .field--prepend {
+        @include bg-neutral(1);
+      }
+    }
+  }
+
+  &--prepend {
+    @include display(flex);
+    @include flex-flow(row-reverse);
+    @include flex-wrap(wrap);
+    
+    & > label {
+      @include display(block);
+      @include w-pct(100);
+    }
+
+    & > .field {
+      @include border-l-radius(0);
+      @include border-r-radius(3);
+      @include flex-grow(1);
+      @include flex-shrink(1);
+      @include flex-basis(0);
+
+      &--prepend {
+        @include align-items(center);
+        @include bg-white();
+        @include border-l(4);
+        @include border-transparent;
+        @include border-l-radius(3);
+        @include border-r-radius(0);
+        @include display(inline-flex);
+        @include flex-flow(row);
+        @include flex-wrap(nowrap);
+        @include padding-l(2);
+        @include padding-r(0);
+        @include padding-y(2);
+        @include text-neutral(5);
+
+      }
+
+      &:not(.disabled):focus, &:not(:disabled):focus {
+        @include border-transparent;
+
+        & + .field--prepend {
+          @include border-l-primary(4);
+        }
+      }
+    }
+  }
+}
+
+/** Dropdown Styles - Using Material Menu */
+.mat-menu-panel.menu-dropdown {
+  @include box-shadow(3);
+  @include minh-auto;
+  @include margin-t(1);
+
+  & > .mat-menu-content {
+    @include border-radius(3);
+    @include padding(3);
+
+		& .mat-menu-item {
+      @include border-b(1);
+      @include border-neutral(2);
+      @include border-radius(3);
+      @include h-auto;
+      @include line-height(3);
+      @include padding(3);
+
+			&:hover {
+        @include bg-neutral(0);
+			}
+		}
+  }
+}
+.th-filter-icon {
+  @include font-size('1');
+  @include position('relative');
+  &:hover {
+    @include cursor('pointer');
+  }
+
+}
+
+.filter-status {
+  @include position('absolute');
+  top: -4px;
+  right: -8px;
+}
